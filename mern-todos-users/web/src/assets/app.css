@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+:root {
+    --bg-gradient: linear-gradient(315deg, #151c2c, #0f121c);
+    --header-height: 50px;
+    --bg-header: rgba(37, 51, 72, 0.3);
+    --bg-nav: rgba(24, 34, 48, 0.15);
+
+    --heading-color: rgb(198 221 255);
+    --text-color: rgb(219 226 235);
+
+    --link-color: #b3abc7;
+    --link-hover-color: #7eaad7;
+    --link-active: #5fcced;
+}
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: #f3f3f3;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    background: var(--bg-gradient);
+    color: var(--text-color);
+}
+
+/* .app {
+} */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--header-height);
+    background-color: var(--bg-header);
+    padding: 0 1rem;
+}
+
+header > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header img.logo {
+    width: 35px;
+    height: auto;
+    pointer-events: none;
+    user-select: none;
+}
+
+header h1 {
+    text-align: center;
+    font-weight: 400;
+    font-size: 1.3rem;
+    color: #fff;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    img.logo {
+        animation: App-logo-spin-color infinite 60s linear;
+    }
+}
+@keyframes App-logo-spin-color {
+    from {
+        transform: rotate(0deg);
+        filter: hue-rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+        filter: hue-rotate(360deg);
+    }
+}
+
+nav a {
+    font-size: 1rem;
+    text-decoration: none;
+    margin: 0 .5rem;
+    color: var(--link-color);
+}
+nav a:hover {
+    color: var(--link-hover-color);
+}
+nav a.active {
+    color: var(--link-active);
+}
+
+.pages {
+    padding: 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.pages h2 {
+    color: var(--heading-color);
+    font-size: 1.25rem;
+    display: block;
+    margin: 0 0 1rem 0;
+}
