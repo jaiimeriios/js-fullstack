@@ -1,29 +1,39 @@
-// import { useEffect } from 'react';
-// import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
+import { useEffect } from 'react';
+import { useUsersContext } from '../hooks/useDataContext'
 
 // import WorkoutsDetails from '../components/WorkoutsDetails';
 // import WorkoutForm from '../components/WorkoutForm';
 
 const Users = () => {
-    // const { workouts, dispatch } = useWorkoutsContext();
+    const { users, dispatch } = useUsersContext();
 
-    // useEffect(() => {
-    //     const fetchWorkouts = async () => {
-    //         const response = await fetch('/workouts');
-    //         const json = await response.json();
+    useEffect(() => {
+        const fetchUsers = async () => {
+            const response = await fetch('http://localhost:666/users');
+            const data = await response.json();
 
-    //         if (response.ok) {
-    //             dispatch({ type: 'SET_WORKOUTS', payload: json });
-    //             // console.log('set workouts')
-    //         }
-    //     };
+            if (response.ok) {
+                dispatch({ type: 'SET_USERS', payload: data });
+            }
+        };
         
-    //     fetchWorkouts();
-    // }, [dispatch]);
+        fetchUsers();
+    }, [dispatch]);
 
     return (
         <>
             <h2>Users</h2>
+            <div className="users-wrapper">
+                {/* FORM  */}
+                <div className="users">
+                    {
+                    users &&
+                        users.map((todo) => (
+                            <p key={todo._id}>{todo.name}</p>
+                        ))
+                    }
+                </div>
+            </div>
         </>
     );
 };

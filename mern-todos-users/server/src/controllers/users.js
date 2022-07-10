@@ -5,21 +5,9 @@ import chalk from 'chalk';
 
 // GET
 export const getAllUsers = async (req, res) => {
-    const user = await UsersModel.find({});
-    try {
-        res.status(200).json({
-            status: 'Success',
-            data: {
-                user,
-            },
-        });
-        console.log(chalk.bgMagenta(' GET - ALL USER:: '), user);
-    } catch (err) {
-        res.status(500).json({
-            status: 'Failed',
-            message: err,
-        });
-    }
+    const users = await UsersModel.find({});
+    console.log(':: GET ALL :: ', users);
+    res.status(200).json(users);
 }
 
 export const getUser = async (req, res) => {

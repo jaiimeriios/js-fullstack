@@ -5,21 +5,9 @@ import chalk from 'chalk';
 
 // GET
 export const getAllTodos = async (req, res) => {
-    const todo = await TodosModel.find({});
-    try {
-        res.status(200).json({
-            status: 'Success',
-            data: {
-                todo,
-            },
-        });
-        console.log(chalk.bgMagenta(' GET - ALL TODO:: '), todo);
-    } catch (err) {
-        res.status(500).json({
-            status: 'Failed',
-            message: err,
-        });
-    }
+    const todos = await TodosModel.find({});
+    console.log(':: GET ALL :: ', todos);
+    res.status(200).json(todos);
 };
 
 export const getTodo = async (req, res) => {
