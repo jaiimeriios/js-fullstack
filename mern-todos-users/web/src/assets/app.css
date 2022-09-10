@@ -100,7 +100,7 @@ nav a.active {
 }
 
 .pages {
-    padding: 1rem;
+    padding: 1rem 0;
     max-width: 1400px;
     margin: 0 auto;
 }
@@ -113,6 +113,66 @@ nav a.active {
 }
 
 /* todos */
+form.todos-form {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: .3rem;
+    box-shadow: 6px 6px 9px rgba(0, 0, 0, 0.251);
+    background-color: rgba(36, 96, 124, 0.3);
+}
+form.todos-form label {
+    display: block;
+    margin: 0 0 .5rem 0;
+    color: #fff;
+    font-size: 1rem;
+}
+
+form.todos-form input[type='text'],
+form.todos-form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1.1rem;
+    border-radius: 0.25rem;
+    border: none;
+    outline: none;
+    margin-bottom: 1rem;
+    color: #000;
+}
+form.todos-form textarea {
+    font-size: 1rem;
+    line-height: 1.5;
+    font-family: 'Inter', sans-serif;
+    resize: vertical;
+    min-height: 100px;
+    max-height: 300px;
+}
+
+form.todos-form input[type='text']:focus,
+form.todos-form textarea:focus {
+    outline: solid 2px var(--link-active);
+}
+
+form.todos-form button {
+    display: block;
+    width: max-content;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    color: #fff;
+    border-radius: 0.25rem;
+    transition: background-color 200ms ease-in;
+    background-color: #3f51b5;
+}
+form.todos-form button:hover {
+    cursor: pointer;
+    background-color: #03a9f4;
+}
+
 .todos-wrapper {
     width: 100%;
     display: flex;
@@ -137,22 +197,66 @@ nav a.active {
     border-left-color: #ffcb2d;
 }
 
-
-
-
 @media screen and (min-width: 900px) {
     .todos-wrapper {
         gap: 2%;
     }
     .todos-wrapper .todos-single {
-        width: 48%;
+        width: 49%;
     }
 }
 
-
-
-
 /* users */
+form.users-form {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: .3rem;
+    box-shadow: 6px 6px 9px rgba(0, 0, 0, 0.251);
+    background-color: rgba(36, 96, 124, 0.3);
+}
+form.users-form label {
+    display: block;
+    margin: 0 0 .5rem 0;
+    color: #fff;
+    font-size: 1rem;
+}
+
+form.users-form input {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1.1rem;
+    border-radius: 0.25rem;
+    border: none;
+    outline: none;
+    margin-bottom: 1rem;
+    color: #000;
+}
+
+form.users-form input:focus {
+    outline: solid 2px var(--link-active);
+}
+
+form.users-form button {
+    display: block;
+    width: max-content;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    color: #fff;
+    border-radius: 0.25rem;
+    transition: background-color 200ms ease-in;
+    background-color: #3f51b5;
+}
+form.users-form button:hover {
+    cursor: pointer;
+    background-color: #03a9f4;
+}
+
 .users-wrapper {
     width: 100%;
 }
@@ -161,7 +265,6 @@ nav a.active {
     border: none;
     border-collapse: collapse;
 }
-
 
 .users-wrapper table thead tr {
     background-color: rgba(255, 255, 255, 0.1);
@@ -178,11 +281,11 @@ nav a.active {
     border: solid 1px #ffffff21;
 }
 
-.users-wrapper table tbody tr:nth-child(odd){
+.users-wrapper table tbody tr:nth-child(odd) {
     background-color: rgba(255, 255, 255, 0.251);
 }
 
-.users-wrapper table tbody tr:nth-child(even){
+.users-wrapper table tbody tr:nth-child(even) {
     background-color: rgba(158, 255, 255, 0.29);
 }
 

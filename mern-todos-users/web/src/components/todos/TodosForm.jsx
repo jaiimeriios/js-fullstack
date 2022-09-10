@@ -35,29 +35,33 @@ const TodosForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>Todo:</label>
-            <input
-                type="text"
-                onChange={(e) => setTitle(e.target.value)}
-                value={title}
-            />
+        <form onSubmit={handleSubmit} className="todos-form">
+            <div>
+                <label>Todo:</label>
+                <input
+                    type="text"
+                    onChange={(e) => setTitle(e.target.value)}
+                    value={title}
+                />
+            </div>
 
-            <label>Description:</label>
-            <input
-                type="text"
-                onChange={(e) => setDescription(e.target.value)}
-                value={description}
-            />
+            <div>
+                <label>Description:</label>
+                <textarea
+                    onChange={(e) => setDescription(e.target.value)}
+                    value={description}
+                />
+            </div>
+            <div>
+                <label>Important?</label>
+                <input
+                    type="checkbox"
+                    onChange={(e) => setImportant(!important)}
+                    value={important}
+                />
+            </div>
 
-            <label>Important?</label>
-            <input
-                type="checkbox"
-                onChange={(e) => setImportant(!important)}
-                value={important}
-            />
-
-            <button>Add</button>
+            <button>Add Todo</button>
         </form>
     );
 };

@@ -35,7 +35,7 @@ const UsersForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='users-form'>
             <label>Name:</label>
             <input
                 type="text"
