@@ -32,6 +32,7 @@ const Users = () => {
                             <th>Name</th>
                             <th>Username</th>
                             <th>Age</th>
+                            <th>created</th>
                         </tr>
                     </thead>
                     <tbody>

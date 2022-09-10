@@ -11,7 +11,7 @@ export const todosReducer = (state, action) => {
             };
         case 'CREATE_TODOS':
             return {
-                todos: [action.payload, ...state.todos],
+                todos: [...state.todos, action.payload],
             };
         case 'DELETE_TODOS':
             return {
@@ -38,7 +38,7 @@ export const usersReducer = (state, action) => {
             };
         case 'CREATE_USERS':
             return {
-                users: [action.payload, ...state.users],
+                users: [...state.users, action.payload],
             };
         case 'DELETE_USERS':
             return {
