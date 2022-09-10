@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useUsersContext } from '../hooks/useDataContext';
 
-// import WorkoutsDetails from '../components/WorkoutsDetails';
-// import WorkoutForm from '../components/WorkoutForm';
+import UsersForm from '../components/users/UsersForm';
+import UsersDetails from '../components/users/UsersDetails';
 
 const Users = () => {
     const { users, dispatch } = useUsersContext();
@@ -16,7 +16,6 @@ const Users = () => {
                 dispatch({ type: 'SET_USERS', payload: data });
             }
         };
-
         fetchUsers();
     }, [dispatch]);
 
@@ -24,7 +23,8 @@ const Users = () => {
         <>
             <h2>Users</h2>
 
-            {/* FORM  */}
+            <UsersForm />
+
             <div className="users-wrapper">
                 <table>
                     <thead>
@@ -37,11 +37,7 @@ const Users = () => {
                     <tbody>
                         {users &&
                             users.map((user) => (
-                                <tr key={user._id}>
-                                    <td>{user.name}</td>
-                                    <td>{user.username}</td>
-                                    <td>{user.age}</td>
-                                </tr>
+                                <UsersDetails key={user._id} user={user} />
                             ))}
                     </tbody>
                 </table>

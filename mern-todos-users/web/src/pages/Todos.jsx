@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useTodosContext } from '../hooks/useDataContext';
 
-// import WorkoutsDetails from '../components/WorkoutsDetails';
-// import WorkoutForm from '../components/WorkoutForm';
+import TodosForm from '../components/todos/TodosForm';
+import TodoDetails from '../components/todos/TodosDetails';
 
 const Todos = () => {
     const { todos, dispatch } = useTodosContext();
@@ -16,7 +16,6 @@ const Todos = () => {
                 dispatch({ type: 'SET_TODOS', payload: data });
             }
         };
-
         fetchTodos();
     }, [dispatch]);
 
@@ -24,16 +23,12 @@ const Todos = () => {
         <>
             <h2>Todos</h2>
 
-            {/* FORM  */}
+            <TodosForm />
 
             <div className="todos-wrapper">
                 {todos &&
                     todos.map((todo) => (
-                        <div className={`todos-single ${todo.important && 'is-important'}`} key={todo._id}>
-                            <p>{todo.title}</p>
-                            <p>{todo.description}</p>
-                            <p>{todo.important ? 'verdad' : 'falso'}</p>
-                        </div>
+                        <TodoDetails key={todo._id} todo={todo} />
                     ))}
             </div>
         </>
