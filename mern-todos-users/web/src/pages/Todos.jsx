@@ -23,16 +23,18 @@ const Todos = () => {
     return (
         <>
             <h2>Todos</h2>
+
+            {/* FORM  */}
+
             <div className="todos-wrapper">
-                {/* FORM  */}
-                <div className="todos">
-                    {
-                    todos &&
-                        todos.map((todo) => (
-                            <p key={todo._id}>{todo.title}</p>
-                        ))
-                    }
-                </div>
+                {todos &&
+                    todos.map((todo) => (
+                        <div className={`todos-single ${todo.important && 'is-important'}`} key={todo._id}>
+                            <p>{todo.title}</p>
+                            <p>{todo.description}</p>
+                            <p>{todo.important ? 'verdad' : 'falso'}</p>
+                        </div>
+                    ))}
             </div>
         </>
     );

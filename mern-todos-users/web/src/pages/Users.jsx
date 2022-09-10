@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useUsersContext } from '../hooks/useDataContext'
+import { useUsersContext } from '../hooks/useDataContext';
 
 // import WorkoutsDetails from '../components/WorkoutsDetails';
 // import WorkoutForm from '../components/WorkoutForm';
@@ -16,23 +16,35 @@ const Users = () => {
                 dispatch({ type: 'SET_USERS', payload: data });
             }
         };
-        
+
         fetchUsers();
     }, [dispatch]);
 
     return (
         <>
             <h2>Users</h2>
+
+            {/* FORM  */}
             <div className="users-wrapper">
-                {/* FORM  */}
-                <div className="users">
-                    {
-                    users &&
-                        users.map((todo) => (
-                            <p key={todo._id}>{todo.name}</p>
-                        ))
-                    }
-                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Username</th>
+                            <th>Age</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {users &&
+                            users.map((user) => (
+                                <tr key={user._id}>
+                                    <td>{user.name}</td>
+                                    <td>{user.username}</td>
+                                    <td>{user.age}</td>
+                                </tr>
+                            ))}
+                    </tbody>
+                </table>
             </div>
         </>
     );

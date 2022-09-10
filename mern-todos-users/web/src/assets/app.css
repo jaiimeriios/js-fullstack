@@ -89,7 +89,7 @@ header h1 {
 nav a {
     font-size: 1rem;
     text-decoration: none;
-    margin: 0 .5rem;
+    margin: 0 0.5rem;
     color: var(--link-color);
 }
 nav a:hover {
@@ -110,4 +110,82 @@ nav a.active {
     font-size: 1.25rem;
     display: block;
     margin: 0 0 1rem 0;
+}
+
+/* todos */
+.todos-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.todos-wrapper .todos-single {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    margin: 0 0 2rem 0;
+    border-left: solid 2px transparent;
+    transition: background-color 200ms ease-in;
+    background-color: rgba(255, 255, 255, 0.125);
+}
+
+.todos-wrapper .todos-single:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.todos-wrapper .todos-single.is-important {
+    border-left-color: #ffcb2d;
+}
+
+
+
+
+@media screen and (min-width: 900px) {
+    .todos-wrapper {
+        gap: 2%;
+    }
+    .todos-wrapper .todos-single {
+        width: 48%;
+    }
+}
+
+
+
+
+/* users */
+.users-wrapper {
+    width: 100%;
+}
+.users-wrapper table {
+    width: 100%;
+    border: none;
+    border-collapse: collapse;
+}
+
+
+.users-wrapper table thead tr {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.users-wrapper table thead th {
+    text-align: left;
+    padding: 6px;
+    font-size: 1.1rem;
+}
+
+.users-wrapper table td,
+.users-wrapper table thead th {
+    padding: 8px;
+    border: solid 1px #ffffff21;
+}
+
+.users-wrapper table tbody tr:nth-child(odd){
+    background-color: rgba(255, 255, 255, 0.251);
+}
+
+.users-wrapper table tbody tr:nth-child(even){
+    background-color: rgba(158, 255, 255, 0.29);
+}
+
+.users-wrapper table tbody tr:hover {
+    background-color: #2a3b40;
 }
