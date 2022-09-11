@@ -12,7 +12,7 @@ const UsersForm = () => {
 
         const users = { name, username, age };
 
-        const response = await fetch('http://localhost:666/users', {
+        const response = await fetch('/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ const UsersForm = () => {
         if (response.ok) {
             setName('');
             setUsername('');
-            setAge(false);
+            setAge('');
             dispatch({ type: 'CREATE_USERS', payload: json });
             console.log('new added', json);
         }

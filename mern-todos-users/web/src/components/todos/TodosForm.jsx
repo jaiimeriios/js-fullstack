@@ -12,7 +12,7 @@ const TodosForm = () => {
 
         const todos = { title, description, important };
 
-        const response = await fetch('http://localhost:666/todos', {
+        const response = await fetch('/todos', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

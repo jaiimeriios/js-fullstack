@@ -9,7 +9,7 @@ const Users = () => {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            const response = await fetch('http://localhost:666/users');
+            const response = await fetch('/users');
             const data = await response.json();
 
             if (response.ok) {

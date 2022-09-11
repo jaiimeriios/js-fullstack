@@ -1,5 +1,4 @@
 import 'dotenv/config';
-import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
 import chalk from 'chalk';
@@ -11,7 +10,6 @@ const app = express();
 const PORT = process.env.PORT;
 
 // middleware
-app.use(cors());
 app.use(express.json());
 
 // ROUTES

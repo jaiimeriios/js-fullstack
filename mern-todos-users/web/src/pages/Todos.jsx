@@ -9,7 +9,7 @@ const Todos = () => {
 
     useEffect(() => {
         const fetchTodos = async () => {
-            const response = await fetch('http://localhost:666/todos');
+            const response = await fetch('/todos');
             const data = await response.json();
 
             if (response.ok) {
