@@ -13,7 +13,7 @@ const Todos = () => {
             const data = await response.json();
 
             if (response.ok) {
-                dispatch({ type: 'SET_TODOS', payload: data });
+                dispatch({ type: 'SET_TODOS', payload: data.reverse() });
             }
         };
         fetchTodos();

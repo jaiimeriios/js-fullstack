@@ -11,7 +11,7 @@ export const todosReducer = (state, action) => {
             };
         case 'CREATE_TODOS':
             return {
-                todos: [...state.todos, action.payload],
+                todos: [action.payload, ...state.todos],
             };
         case 'DELETE_TODOS':
             return {
