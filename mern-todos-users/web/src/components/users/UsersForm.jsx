@@ -20,7 +20,7 @@ const UsersForm = () => {
             body: JSON.stringify(users),
         });
 
-        const json = await response.json();
+        const data = await response.json();
 
         if (!response.ok) {
             console.log('error');
@@ -29,8 +29,8 @@ const UsersForm = () => {
             setName('');
             setUsername('');
             setAge('');
-            dispatch({ type: 'CREATE_USERS', payload: json });
-            console.log('new added', json);
+            dispatch({ type: 'CREATE_USER', payload: data });
+            console.log('new added', data);
         }
     };
 

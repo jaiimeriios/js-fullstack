@@ -20,7 +20,7 @@ const TodosForm = () => {
             body: JSON.stringify(todos),
         });
 
-        const json = await response.json();
+        const data = await response.json();
 
         if (!response.ok) {
             console.log('error');
@@ -29,8 +29,8 @@ const TodosForm = () => {
             setTitle('');
             setDescription('');
             setImportant(false);
-            dispatch({ type: 'CREATE_TODOS', payload: json });
-            console.log('new added', json);
+            dispatch({ type: 'CREATE_TODO', payload: data });
+            console.log('new added', data);
         }
     };
 
@@ -57,7 +57,7 @@ const TodosForm = () => {
                 <input
                     type="checkbox"
                     onChange={(e) => setImportant(!important)}
-                    value={important}
+                    checked={important ? 'checked' : ''}
                 />
             </div>
 

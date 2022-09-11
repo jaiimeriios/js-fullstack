@@ -9,15 +9,15 @@ export const todosReducer = (state, action) => {
             return {
                 todos: action.payload,
             };
-        case 'CREATE_TODOS':
+        case 'CREATE_TODO':
             return {
                 todos: [action.payload, ...state.todos],
             };
-        case 'DELETE_TODOS':
+        case 'DELETE_TODO':
             return {
-                todos: state.todos.filter((w) => w._id !== action.payload._id),
+                todos: state.todos.filter((t) => t._id !== action.payload._id),
             };
-        case 'PATCH_TODOS':
+        case 'PATCH_TODO':
             const patchObject = state.todos.find((arrayItem) => {
                 return arrayItem._id === action.payload._id;
             });
@@ -36,15 +36,15 @@ export const usersReducer = (state, action) => {
             return {
                 users: action.payload,
             };
-        case 'CREATE_USERS':
+        case 'CREATE_USER':
             return {
                 users: [...state.users, action.payload],
             };
-        case 'DELETE_USERS':
+        case 'DELETE_USER':
             return {
-                users: state.users.filter((w) => w._id !== action.payload._id),
+                users: state.users.filter((u) => u._id !== action.payload._id),
             };
-        case 'PATCH_USERS':
+        case 'PATCH_USER':
             const patchObject = state.users.find((arrayItem) => {
                 return arrayItem._id === action.payload._id;
             });
