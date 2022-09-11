@@ -1,0 +1,7 @@
+x Frontend base set up react
+x set DataContext and UseDataContext
+x GET request - show all items from db
+x PUT reques - create new entries
+o PATCH Request
+o DELETE confirmation
+o Notification on Delete

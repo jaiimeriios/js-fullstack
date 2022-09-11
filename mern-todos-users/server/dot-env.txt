@@ -1,0 +1,2 @@
+PORT = PORTNUMBER
+MONGO_URI = mongodb+srv://usernameHERE:passwordHERE@DBNAME.g6sqj.mongodb.net/COLLECTIONNAME?retryWrites=true&w=majority
