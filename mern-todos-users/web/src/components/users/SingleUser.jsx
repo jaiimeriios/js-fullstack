@@ -39,6 +39,11 @@ const SingleUser = () => {
         setAge(user.age);
     };
 
+    const handleCancelUpdate = (e) => {
+        e.preventDefault()
+        setEdit(false);
+    }
+
     // PATCH
     const handlePatch = async (e) => {
         e.preventDefault();
@@ -88,7 +93,11 @@ const SingleUser = () => {
                         onChange={(e) => setAge(e.target.value)}
                         value={age}
                     />
-                    <button>Save</button>
+
+
+                    <button onClick={handleCancelUpdate}>Cancel</button>
+                    <button type='submit'>Update</button>
+
                     {error && (
                         <div className="error-message">All fields required</div>
                     )}

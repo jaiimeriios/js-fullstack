@@ -45,6 +45,11 @@ const TodosDetails = ({ todo }) => {
         setEdit(false);
     };
 
+    const handleCancelUpdate = (e) => {
+        e.preventDefault()
+        setEdit(false);
+    }
+
     // DELETE
     const handleDelete = async () => {
         const response = await fetch(`todos/${todo._id}`, {
@@ -88,7 +93,8 @@ const TodosDetails = ({ todo }) => {
                             />
                         </div>
 
-                        <button>Update</button>
+                        <button onClick={handleCancelUpdate}>Cancel</button>
+                        <button type='submit'>Update</button>
                         {error && (
                             <div className="error-message">
                                 Title field required
