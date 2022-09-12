@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useTodosContext } from '../../hooks/useDataContext';
 
 // date fns

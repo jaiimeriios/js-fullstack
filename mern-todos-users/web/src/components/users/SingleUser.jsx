@@ -30,7 +30,7 @@ const SingleUser = () => {
             }
         };
         fetchUsers();
-    }, [dispatch]);
+    }, [id, dispatch]);
 
     const toggleEditMode = () => {
         setEdit(true);
@@ -115,14 +115,9 @@ const SingleUser = () => {
                             addSuffix: true,
                         })}
                     </p>
-                    <p>
-                        {formatDistanceToNow(new Date(user.updatedAt), {
-                            addSuffix: true,
-                        })}
-                    </p>
-                    <span className="edit" onClick={toggleEditMode}>
+                    <button className="edit" onClick={toggleEditMode}>
                         Edit
-                    </span>
+                    </button>
                 </>
             ) : (
                 <p>Loading User...</p>
