@@ -52,6 +52,16 @@ export const usersReducer = (state, action) => {
             return {
                 users: state.users,
             };
+
+
+            // const patchObject = state.users.find((user) => {
+            //     return user._id === action.payload._id;
+            // });
+            // const updated = Object.assign(patchObject, action.payload);
+            // return {
+            //     users: updated
+            // };
+
         default:
             return state;
     }

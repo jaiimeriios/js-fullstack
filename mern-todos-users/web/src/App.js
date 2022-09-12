@@ -2,7 +2,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 
 // context providers
-import { TodosContextProvider, UsersContextProvider } from './context/DataContext';
+import {
+    TodosContextProvider,
+    UsersContextProvider,
+} from './context/DataContext';
+import SingleUser from './components/users/SingleUser';
 
 // Pages
 import Home from './pages/Home';
@@ -23,6 +27,13 @@ const UsersProvider = () => {
         </UsersContextProvider>
     );
 };
+const SingleUserProvider = () => {
+    return (
+        <UsersContextProvider>
+            <SingleUser />
+        </UsersContextProvider>
+    );
+};
 
 function App() {
     return (
@@ -34,6 +45,7 @@ function App() {
                         <Route path="/" element={<Home />} />
                         <Route path="/todos" element={<TodosProvider />} />
                         <Route path="/users" element={<UsersProvider />} />
+                        <Route path="/users/:id" element={<SingleUserProvider />} />
                     </Routes>
                 </div>
             </BrowserRouter>

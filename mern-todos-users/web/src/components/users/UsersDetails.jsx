@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useUsersContext } from '../../hooks/useDataContext';
 
+import { Link } from 'react-router-dom';
+
 // date fns
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
@@ -32,9 +34,14 @@ const UsersDetails = ({ user }) => {
                 })}
             </td>
             <td>
-                <span className="delete" onClick={handleDelete}>
+                <Link to={`/users/${user._id}`}>
+                    View
+                </Link>
+            </td>
+            <td>
+                <button className="delete" onClick={handleDelete}>
                     Delete
-                </span>
+                </button>
             </td>
         </tr>
     );

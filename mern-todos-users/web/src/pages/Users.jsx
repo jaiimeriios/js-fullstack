@@ -11,7 +11,6 @@ const Users = () => {
         const fetchUsers = async () => {
             const response = await fetch('/users');
             const data = await response.json();
-
             if (response.ok) {
                 dispatch({ type: 'SET_USERS', payload: data });
             }
@@ -33,6 +32,7 @@ const Users = () => {
                             <th>Username</th>
                             <th>Age</th>
                             <th>created</th>
+                            <th>view</th>
                             <th>delete</th>
                         </tr>
                     </thead>
