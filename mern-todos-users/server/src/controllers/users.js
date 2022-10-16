@@ -31,9 +31,9 @@ export const getUser = async (req, res) => {
 
 // POST
 export const postUser = async (req, res) => {
-    const { name, age, username } = req.body;
+    const { userid, name, username, email } = req.body;
     try {
-        const user = await UsersModel.create({ name, age, username });
+        const user = await UsersModel.create({ userid, name, username, email });
         res.status(200).json(user);
         console.log(chalk.bgGreen(' POST - USER:: '), user);
     } catch (err) {

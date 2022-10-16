@@ -3,14 +3,15 @@ import { useUsersContext } from '../../hooks/useDataContext';
 
 const UsersForm = () => {
     const { dispatch } = useUsersContext();
+    const [userid, setUserid] = useState('');
     const [name, setName] = useState('');
     const [username, setUsername] = useState('');
-    const [age, setAge] = useState('');
+    const [email, setEmail] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const users = { name, username, age };
+        const users = { userid, name, username, email };
 
         const response = await fetch('/users', {
             method: 'POST',
@@ -26,9 +27,10 @@ const UsersForm = () => {
             console.log('error');
         }
         if (response.ok) {
+            setUserid('');
             setName('');
             setUsername('');
-            setAge('');
+            setEmail('');
             dispatch({ type: 'CREATE_USER', payload: data });
             console.log('new added', data);
         }
@@ -36,6 +38,12 @@ const UsersForm = () => {
 
     return (
         <form onSubmit={handleSubmit} className='users-form'>
+            <label>User ID:</label>
+            <input
+                type="number"
+                onChange={(e) => setUserid(e.target.value)}
+                value={userid}
+            />
             <label>Name:</label>
             <input
                 type="text"
@@ -49,13 +57,14 @@ const UsersForm = () => {
                 onChange={(e) => setUsername(e.target.value)}
                 value={username}
             />
-
-            <label>Age:</label>
+            <label>Email:</label>
             <input
-                type="number"
-                onChange={(e) => setAge(e.target.value)}
-                value={age}
+                type="text"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
             />
+
+            
 
             <button>Add</button>
         </form>

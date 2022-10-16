@@ -13,9 +13,10 @@ const SingleUser = () => {
     const [edit, setEdit] = useState(false);
     const [error, setError] = useState(false);
 
+    const [userid, setUserId] = useState();
     const [name, setName] = useState('');
     const [username, setUsername] = useState('');
-    const [age, setAge] = useState();
+    const [email, setEmail] = useState('');
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -34,9 +35,10 @@ const SingleUser = () => {
 
     const toggleEditMode = () => {
         setEdit(true);
+        setUserId(user.userid);
         setName(user.name);
         setUsername(user.username);
-        setAge(user.age);
+        setEmail(user.email);
     };
 
     const handleCancelUpdate = (e) => {
@@ -50,10 +52,10 @@ const SingleUser = () => {
         setError(false);
 
         let _id = user._id;
-        const Age = parseInt(age);
-        let patchUser = { name, username, age: Age, _id };
+        const Userid = parseInt(userid);
+        let patchUser = { userid: Userid, name, username, email, _id };
 
-        if (name === '' || username === '' || age === '') {
+        if (userid === '' || name === '' || username === '' || email === '') {
             setError(true);
             return;
         }
@@ -75,6 +77,12 @@ const SingleUser = () => {
         <div className="user-details">
             {edit ? (
                 <form onSubmit={handlePatch}>
+                    <label>User ID:</label>
+                    <input
+                        type="number"
+                        onChange={(e) => setUserId(e.target.value)}
+                        value={userid}
+                    />
                     <label>Name:</label>
                     <input
                         type="text"
@@ -87,14 +95,12 @@ const SingleUser = () => {
                         onChange={(e) => setUsername(e.target.value)}
                         value={username}
                     />
-                    <label>Age:</label>
                     <input
-                        type="number"
-                        onChange={(e) => setAge(e.target.value)}
-                        value={age}
+                        type="text"
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
                     />
-
-
+                    
                     <button onClick={handleCancelUpdate}>Cancel</button>
                     <button type='submit'>Update</button>
 
@@ -107,9 +113,10 @@ const SingleUser = () => {
                     <Link to="/users">Go Back</Link>
 
                     <p>{id}</p>
+                    <p>{user.userid}</p>
                     <p>{user.name}</p>
                     <p>{user.username}</p>
-                    <p>{user.age}</p>
+                    <p>{user.email}</p>
                     <p>
                         {formatDistanceToNow(new Date(user.createdAt), {
                             addSuffix: true,

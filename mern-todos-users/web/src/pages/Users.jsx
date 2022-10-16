@@ -28,9 +28,10 @@ const Users = () => {
                 <table>
                     <thead>
                         <tr>
+                            <th>User ID</th>
                             <th>Name</th>
                             <th>Username</th>
-                            <th>Age</th>
+                            <th>Email</th>
                             <th>created</th>
                             <th>view</th>
                             <th>delete</th>

@@ -2,6 +2,9 @@ x Frontend base set up react
 x set DataContext and UseDataContext
 x GET request - show all items from db
 x PUT reques - create new entries
-o PATCH Request
+x PATCH Request
+x add 'complete' to TODOS
+x replace 'age' with 'userid'
+x add 'email' to USERS
 o DELETE confirmation
 o Notification on Delete

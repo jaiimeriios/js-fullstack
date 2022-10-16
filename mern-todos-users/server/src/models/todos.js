@@ -14,6 +14,10 @@ const TodosSchema = new mongoose.Schema(
             type: Boolean,
             required: true,
         },
+        complete: {
+            type: Boolean,
+            required: true,
+        },
     },
     { timestamps: true }
 );

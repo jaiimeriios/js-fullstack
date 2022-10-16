@@ -6,11 +6,12 @@ const TodosForm = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [important, setImportant] = useState(false);
+    const [complete, setComplete] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const todos = { title, description, important };
+        const todos = { title, description, important, complete };
 
         const response = await fetch('/todos', {
             method: 'POST',
@@ -19,7 +20,7 @@ const TodosForm = () => {
             },
             body: JSON.stringify(todos),
         });
-
+        
         const data = await response.json();
 
         if (!response.ok) {
@@ -29,6 +30,7 @@ const TodosForm = () => {
             setTitle('');
             setDescription('');
             setImportant(false);
+            setComplete(false);
             dispatch({ type: 'CREATE_TODO', payload: data });
             console.log('new added', data);
         }
@@ -58,6 +60,14 @@ const TodosForm = () => {
                     type="checkbox"
                     onChange={(e) => setImportant(!important)}
                     checked={important ? 'checked' : ''}
+                />
+            </div>
+            <div>
+                <label>complete</label>
+                <input
+                    type="checkbox"
+                    onChange={(e) => setComplete(!complete)}
+                    checked={complete ? 'checked' : ''}
                 />
             </div>
 

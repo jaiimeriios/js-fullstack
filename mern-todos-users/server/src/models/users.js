@@ -2,18 +2,22 @@ import mongoose from 'mongoose';
 
 const UsersSchema = new mongoose.Schema(
     {
-        name: {
-            type: String,
+        userid: {
+            type: Number,
             required: true,
         },
-        age: {
-            type: Number,
+        name: {
+            type: String,
             required: true,
         },
         username: {
             type: String,
             required: true,
         },
+        email: {
+            type: String,
+            required: true,
+        }
     },
     { timestamps: true }
 );

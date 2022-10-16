@@ -31,9 +31,9 @@ export const getTodo = async (req, res) => {
 
 // POST
 export const postTodo = async (req, res) => {
-    const { title, description, important } = req.body;
+    const { title, description, important, complete } = req.body;
     try {
-        const todo = await TodosModel.create({ title, description, important });
+        const todo = await TodosModel.create({ title, description, important, complete });
         res.status(200).json(todo);
         console.log(chalk.bgGreen(' POST - TODO:: '), todo);
     } catch (err) {

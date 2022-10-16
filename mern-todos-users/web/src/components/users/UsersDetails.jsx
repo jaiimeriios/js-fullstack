@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { useUsersContext } from '../../hooks/useDataContext';
 
 import { Link } from 'react-router-dom';
@@ -25,9 +25,10 @@ const UsersDetails = ({ user }) => {
 
     return (
         <tr>
+            <td>{user.userid}</td>
             <td>{user.name}</td>
             <td>{user.username}</td>
-            <td>{user.age}</td>
+            <td>{user.email}</td>
             <td>
                 {formatDistanceToNow(new Date(user.createdAt), {
                     addSuffix: true,

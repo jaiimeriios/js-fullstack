@@ -11,6 +11,7 @@ const TodosDetails = ({ todo }) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [important, setImportant] = useState(false);
+    const [complete, setComplete] = useState(false);
 
     const [error, setError] = useState(false);
 
@@ -19,6 +20,7 @@ const TodosDetails = ({ todo }) => {
         setTitle(todo.title);
         setDescription(todo.description);
         setImportant(todo.important);
+        setComplete(todo.complete);
     };
 
     // PATCH
@@ -26,7 +28,7 @@ const TodosDetails = ({ todo }) => {
         e.preventDefault();
         setError(false);
         let _id = todo._id;
-        let patchTodos = { title, description, important, _id };
+        let patchTodos = { title, description, important, complete, _id };
 
         if (title === '') {
             setError(true);
@@ -85,11 +87,21 @@ const TodosDetails = ({ todo }) => {
                             />
                         </div>
                         <div>
-                            <label>Important?</label>
+                            <label htmlFor={`important-${todo._id}`}>Important?</label>
                             <input
+                                id={`important-${todo._id}`}
                                 type="checkbox"
                                 onChange={(e) => setImportant(!important)}
                                 checked={important ? 'checked' : ''}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor={`complete-${todo._id}`}>complete</label>
+                            <input
+                                id={`complete-${todo._id}`}
+                                type="checkbox"
+                                onChange={(e) => setComplete(!complete)}
+                                checked={complete ? 'checked' : ''}
                             />
                         </div>
 
@@ -106,6 +118,7 @@ const TodosDetails = ({ todo }) => {
                         <p>{todo.title}</p>
                         <p>{todo.description}</p>
                         <p>{todo.important ? 'verdad' : 'falso'}</p>
+                        <p>{todo.complete ? 'verdad' : 'falso'}</p>
                         <p>
                             {formatDistanceToNow(new Date(todo.createdAt), {
                                 addSuffix: true,
