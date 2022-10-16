@@ -4,6 +4,8 @@ import { useTodosContext } from '../../hooks/useDataContext';
 // date fns
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
+import { toast } from 'react-toastify';
+
 const TodosDetails = ({ todo }) => {
     const { dispatch } = useTodosContext();
 
@@ -43,6 +45,7 @@ const TodosDetails = ({ todo }) => {
         });
         if (response.ok) {
             dispatch({ type: 'PATCH_TODO', payload: patchTodos });
+            toast.info(`Todo ${todo.title} updated`);
         }
         setEdit(false);
     };

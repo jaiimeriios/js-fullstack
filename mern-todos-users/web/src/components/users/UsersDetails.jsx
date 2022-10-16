@@ -1,7 +1,6 @@
-// import { useState } from 'react';
 import { useUsersContext } from '../../hooks/useDataContext';
-
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 // date fns
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
@@ -17,9 +16,10 @@ const UsersDetails = ({ user }) => {
                 'Content-Type': 'application/json',
             },
         });
-
+        
         if (response.ok) {
             dispatch({ type: 'DELETE_USER', payload: user });
+            toast.success(`User ${user.name} deleted`);
         }
     };
 
@@ -35,9 +35,7 @@ const UsersDetails = ({ user }) => {
                 })}
             </td>
             <td>
-                <Link to={`/users/${user._id}`}>
-                    View
-                </Link>
+                <Link to={`/users/${user._id}`}>View</Link>
             </td>
             <td>
                 <button className="delete" onClick={handleDelete}>

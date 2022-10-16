@@ -32,7 +32,7 @@ const UsersForm = () => {
             setUsername('');
             setEmail('');
             dispatch({ type: 'CREATE_USER', payload: data });
-            console.log('new added', data);
+            // console.log('new added', data);
         }
     };
 
@@ -63,8 +63,6 @@ const UsersForm = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
             />
-
-            
 
             <button>Add</button>
         </form>

@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 // date fns
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
+import { toast } from 'react-toastify';
+
 const SingleUser = () => {
     const { id } = useParams();
     const { users, dispatch } = useUsersContext();
@@ -69,6 +71,7 @@ const SingleUser = () => {
 
         if (response.ok) {
             dispatch({ type: 'PATCH_USER', payload: patchUser });
+            toast.info(`User ${user.name} updated`);
         }
         setEdit(false);
     };
