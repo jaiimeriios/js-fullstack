@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const app = express();
 const port = process.env.PORT;
 
+const authUsersRoutes = require('./src/routes/authUsers');
 const workoutRoutes = require('./src/routes/workouts');
 
 // middleware
@@ -18,9 +19,13 @@ app.use((req, res, next) => {
 // routes
 app.get('/', (req, res) => {
     // res.json({ mssg: 'welcome to the app' });
-    res.send('<h1>Home Page</h1><br><a href="/workouts">workouts</a>')
+    res.send('<h1>Home Page</h1><br><a href="/workouts">workouts</a>');
 });
 
+// users login/registration
+app.use('/', authUsersRoutes);
+
+// workouts api json
 app.use('/workouts', workoutRoutes);
 
 app.all('*', (req, res) => {
