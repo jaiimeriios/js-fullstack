@@ -3,11 +3,11 @@ const Workout = require('../models/workouts');
 
 // GET all
 const getWorkouts = async (req, res) => {
-    const workouts = await Workout.find({}).sort({ createdAt: -1 });
-    console.log(':: GET ALL :: ', workouts);
+    const user_id = req.user._id;
+    const workouts = await Workout.find({ user_id }).sort({ createdAt: -1 });
     res.status(200).json(workouts);
+    // console.log(':: GET ALL :: ', workouts);
 };
-
 
 // GET single
 const getWorkout = async (req, res) => {
@@ -29,22 +29,28 @@ const getWorkout = async (req, res) => {
     res.status(200).json(workout);
 };
 
-
 // POST
 const createWorkout = async (req, res) => {
     const { title, reps, load } = req.body;
 
     // error handling messages
-    const emptyFields = []
-    if (!title) { emptyFields.push('title') }
-    if (!reps) { emptyFields.push('reps') }
-    if (!load) { emptyFields.push('load') }
+    const emptyFields = [];
+    if (!title) {
+        emptyFields.push('title');
+    }
+    if (!reps) {
+        emptyFields.push('reps');
+    }
+    if (!load) {
+        emptyFields.push('load');
+    }
     if (emptyFields.length > 0) {
         return res.status(400).json({ error: 'No empty fields', emptyFields });
     }
 
     try {
-        const workout = await Workout.create({ title, reps, load });
+        const user_id = req.user._id;
+        const workout = await Workout.create({ title, reps, load, user_id });
         console.log(':: POST :: ', workout);
         res.status(200).json(workout);
     } catch (e) {
@@ -52,7 +58,6 @@ const createWorkout = async (req, res) => {
         res.status(400).json({ error: e.message });
     }
 };
-
 
 // DELETE
 const deleteWorkout = async (req, res) => {
@@ -69,10 +74,9 @@ const deleteWorkout = async (req, res) => {
         return res.status(400).json({ error: 'No such workout' });
     }
 
-    console.log(':: DELETED WORKOUT ::', workout)
+    console.log(':: DELETED WORKOUT ::', workout);
     res.status(200).json(workout);
 };
-
 
 // PATCH
 const updateWorkout = async (req, res) => {
@@ -93,7 +97,7 @@ const updateWorkout = async (req, res) => {
         return res.status(400).json({ error: 'No such workout' });
     }
 
-    console.log(':: PATCH WORKOUT ::', workout)
+    console.log(':: PATCH WORKOUT ::', workout);
     res.status(200).json(workout);
 };
 

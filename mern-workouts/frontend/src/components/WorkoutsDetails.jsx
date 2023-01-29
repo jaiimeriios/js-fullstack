@@ -1,11 +1,14 @@
 import { useState } from 'react';
+import { useAuthContext } from '../hooks/useAuthContext';
 import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
 
 // date fns
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
 const WorkoutsDetails = ({ workout }) => {
+    const { userAuth } = useAuthContext();
     const { dispatch } = useWorkoutsContext();
+
     const [edit, setEdit] = useState(false);
     const [error, setError] = useState(false);
     const [title, setTitle] = useState('');
@@ -22,6 +25,11 @@ const WorkoutsDetails = ({ workout }) => {
     // PATCH
     const handlePatch = async (e) => {
         e.preventDefault();
+
+        if (!userAuth) {
+            return;
+        }
+
         setError(false);
         let _id = workout._id;
         let patchWorkout = { title, reps, load, _id };
@@ -34,6 +42,7 @@ const WorkoutsDetails = ({ workout }) => {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${userAuth.token}`
             },
             body: JSON.stringify(patchWorkout),
         });
@@ -48,10 +57,15 @@ const WorkoutsDetails = ({ workout }) => {
 
     // DELETE
     const handleDelete = async () => {
+        if (!userAuth) {
+            return;
+        }
+
         const response = await fetch(`workouts/${workout._id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${userAuth.token}`
             },
         });
         const json = await response.json();
@@ -94,9 +108,7 @@ const WorkoutsDetails = ({ workout }) => {
                         Update
                     </button>
                     {error && (
-                        <div className="error-message">
-                            All field required
-                        </div>
+                        <div className="error-message">All field required</div>
                     )}
                 </form>
             ) : (
