@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;700&display=swap');
+
+:root {
+    --bg-gradient: linear-gradient(315deg, #e3f1fc, #f3f3f6);
+    --header-height: 45px;
+    --bg-header: rgba(255, 255, 255, 1);
+
+    --nav-heading-color: rgb(28 28 96);
+    --heading-color: rgb(37 37 114);
+    --text-color: rgb(17, 18, 18);
+
+    --link-color: #4477f7;
+    --link-hover-color: #462bc9;
+    --link-active-color: #3fbbc9;
+
+    --primary: #07936b;
+    --error: #852141;
+}
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Maven Pro', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #f3f3f3;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    background: var(--bg-gradient);
+    color: var(--text-color);
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+a:hover {
+    color: var(--link-hover-color);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--header-height);
+    background-color: var(--bg-header);
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+}
+
+header > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header .home {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 0;
+    text-decoration: none;
+}
+
+header h1 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: -0.05rem;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+header h1 a {
+    text-decoration: none;
+    color: var(--nav-heading-color);
+}
+
+header .title:hover h1 a {
+    color: var(--link-hover-color);
+}
+
+header > div img {
+    width: 35px;
+    height: auto;
+    pointer-events: none;
+    user-select: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    header > div img {
+        animation: App-logo-spin-color infinite 60s linear;
+    }
+}
+@keyframes App-logo-spin-color {
+    from {
+        transform: rotate(0deg);
+        filter: hue-rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+        filter: hue-rotate(360deg);
+    }
+}
+
+header nav {
+    display: flex;
+    gap: 0.75rem;
+}
+
+header nav a {
+    font-size: 1rem;
+}
+
+.entry {
+    width: 96%;
+    max-width: 1000px;
+    margin: 0 auto 1.5rem auto;
+    background-color: #fff;
+    padding: 1rem;
+}
+
+.entry .bg-img {
+    width: 100%;
+    max-height: 200px;
+    overflow: hidden;
+    border-radius: 0.25rem;
+}
+
+.entry .bg-img img {
+    width: 100%;
+    height: auto;
+}
+
+.entry h2 {
+    margin: 0.5rem 0 0.35rem 0;
+    font-size: 1.5rem;
+    line-height: 1.65;
+    color: var(--heading-color);
+}
+
+.entry p.info {
+    font-size: 1rem;
+    margin: 0 0 0.35rem 0;
+}
+
+.entry p.info .author {
+    margin: 0 0.5rem 0 0;
+}
+
+.entry p {
+    line-height: 1.4;
+    color: var(--text-color);
+}
+
+.auth-form {
+    width: 360px;
+    margin: 2rem auto 0 auto;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 0.35rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.auth-form h3 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.auth-form input {
+    width: 100%;
+
+    padding: 0.35rem;
+    font-size: 1.1rem;
+    margin: 0 auto 1rem auto;
+    border-radius: 0.25rem;
+    border: solid 2px #97c8f1;
+}
+
+.auth-form input:focus {
+    border-color: var(--link-hover-color);
+    outline: none;
+}
+
+.auth-form input::placeholder {
+    color: #97c8f1;
+}
+
+.auth-form button {
+    width: fit-content;
+    margin: 0 auto;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    color: #fff;
+    border: none;
+    border-radius: 0.3rem;
+    background-color: var(--link-color);
+}
+
+.auth-form button:hover {
+    cursor: pointer;
+    background-color: var(--link-hover-color);
+}
+.auth-form button:active {
+    background-color: var(--link-active-color);
+}
