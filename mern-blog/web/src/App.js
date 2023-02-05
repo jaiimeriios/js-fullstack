@@ -5,6 +5,7 @@ import Layout from './components/Layout';
 import IndexPage from './Pages/IndexPage';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
+import CreatePost from './Pages/CreatePost';
 
 const App = () => {
     return (
@@ -12,8 +13,9 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<IndexPage />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
+                    <Route path="login" element={<Login />} />
+                    <Route path="register" element={<Register />} />
+                    <Route path="create" element={<CreatePost />} />
                 </Route>
             </Routes>
         </UserContextProvider>

@@ -8,13 +8,16 @@ const app = express();
 const port = process.env.PORT;
 
 const authUsersRoutes = require('./src/routes/authUser');
+const createPost = require('./src/routes/create');
 
+// Middleware
 app.use(express.json());
 app.use(cors({ credentials: true, origin: process.env.ORIGIN_URL }));
 app.use(cookieParser())
 
-
+// Routes
 app.use('/', authUsersRoutes);
+app.use('/create', createPost);
 
 mongoose
     .connect(process.env.MONGO_URI)

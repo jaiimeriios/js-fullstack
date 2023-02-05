@@ -215,3 +215,67 @@ header nav a {
 .auth-form button:active {
     background-color: var(--link-active-color);
 }
+
+/* NEW POST FORM */
+.create-post {
+    width: 90%;
+    max-width: 600px;
+    margin: 2rem auto;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 0.35rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.create-post h3.title {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.create-post input {
+    width: 100%;
+    padding: 0.35rem;
+    font-size: 1.1rem;
+    margin: 0 auto 1rem auto;
+    border-radius: 0.25rem;
+    border: solid 1px #ccc;
+}
+
+.create-post input:focus {
+    border-color: var(--link-hover-color);
+    outline: none;
+}
+
+.create-post input::placeholder {
+    color: #393f44;
+}
+
+.create-post .quill {
+    margin-bottom: 1rem;
+}
+
+.create-post .ql-editor {
+    min-height: 300px;
+    max-height: 600px;
+}
+
+.create-post button {
+    width: fit-content;
+    padding: 0.5rem 1rem;
+    margin: 0 auto;
+    font-size: 1rem;
+    color: #fff;
+    border: none;
+    border-radius: 0.3rem;
+    background-color: var(--link-color);
+}
+
+.create-post button:hover {
+    cursor: pointer;
+    background-color: var(--link-hover-color);
+}
+.create-post button:active {
+    background-color: var(--link-active-color);
+}
