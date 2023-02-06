@@ -46,7 +46,7 @@ const CreatePost = () => {
         data.set('summary', summary);
         data.set('content', content);
         data.set('file', files[0]);
-        const response = await fetch('http://localhost:666/create', {
+        const response = await fetch('http://localhost:666/post', {
             method: 'POST',
             body: data,
             credentials: 'include',

@@ -2,10 +2,13 @@ const mongoose = require('mongoose');
 
 const PostSchrema = new mongoose.Schema(
     {
-        title: String,
-        content: String,
         cover: String,
+        title: String,
+        summary: String,
         content: String,
+        author: {
+            type: mongoose.Schema.Types.ObjectId, ref:'User'
+        }
     },
     { timestamps: true }
 );

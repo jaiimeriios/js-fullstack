@@ -1,29 +1,24 @@
 import { Link } from 'react-router-dom';
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
-const Post = () => {
+const Post = ({ title, content, cover, summary, createdAt, author }) => {
     return (
         <div className="entry">
             <div className="bg-img">
-                <img
-                    src="https://images.pexels.com/photos/924824/pexels-photo-924824.jpeg?auto=compress&cs=tinysrgb&w=1000"
-                    alt="bg blog"
-                />
+                <img src={`http://localhost:666/${cover}`} alt={title} />
             </div>
-            <h2>Lorem Ipsum Dolor Sit Amet</h2>
+            <h2>{title}</h2>
             <p className="info">
-                <Link className="author" to='/'>Name Here</Link>
-                <time>2023-02-01</time>
+                <Link className="author" to="/">
+                    {author.username}
+                </Link>
+                <time>
+                    {formatDistanceToNow(new Date(createdAt), {
+                        addSuffix: true,
+                    })}
+                </time>
             </p>
-            <p>
-                Etiam lacinia vitae lorem et rhoncus. Nulla maximus odio libero,
-                at blandit leo mollis ac. Cras at dui felis. Pellentesque et
-                ante quis eros condimentum ultricies et a orci. In pulvinar,
-                lacus non porta euismod, orci diam aliquet dolor, vel pretium
-                augue nisi eget quam. Vestibulum ante ipsum primis in faucibus
-                orci luctus et ultrices posuere cubilia curae; Nunc cursus
-                consequat mattis. Vestibulum elementum lacus sed aliquam
-                fermentum.
-            </p>
+            <p>{summary}</p>
         </div>
     );
 };
