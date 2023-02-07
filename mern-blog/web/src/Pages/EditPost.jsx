@@ -1,38 +1,57 @@
-import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
 import Editor from '../components/Editor';
 
-const CreatePost = () => {
+const EditPost = () => {
+    const { id } = useParams();
+
     const [title, setTitle] = useState('');
     const [summary, setSumary] = useState('');
     const [files, setFiles] = useState('');
     const [content, setContent] = useState('');
     const [redirect, setRedirect] = useState(false);
+    // const [cover, setCover] = useState('')
 
-    async function createNewPost(e) {
+    useEffect(() => {
+        fetch(`http://localhost:666/post/${id}`)
+            .then((response) => response.json())
+            .then((postInfo) => {
+                setTitle(postInfo.title);
+                setSumary(postInfo.summary);
+                setContent(postInfo.content);
+            });
+    }, []);
+
+    const updatePost = async (e) => {
         e.preventDefault();
+
         const data = new FormData();
         data.set('title', title);
         data.set('summary', summary);
         data.set('content', content);
-        data.set('file', files[0]);
+        data.set('id', id);
+        if (files?.[0]) {
+            data.set('file', files?.[0]);
+        }
+
         const response = await fetch('http://localhost:666/post', {
-            method: 'POST',
+            method: 'PUT',
             body: data,
             credentials: 'include',
         });
-        if (response.ok) {
-            setRedirect(true);
+        if(response.ok) {
+            setRedirect(true)
         }
-    }
+
+    };
 
     if (redirect) {
-        return <Navigate to={'/'} />;
+        return <Navigate to={`/post/${id}`} />;
     }
 
     return (
         <>
-            <form className="create-post" onSubmit={createNewPost}>
+            <form className="create-post" onSubmit={updatePost}>
                 <h3 className="title">Create New Post</h3>
                 <input
                     type="text"
@@ -48,10 +67,9 @@ const CreatePost = () => {
                 />
                 <input type="file" onChange={(e) => setFiles(e.target.files)} />
                 <Editor value={content} onChange={setContent} />
-                <button>Create Post</button>
+                <button>Update Post</button>
             </form>
         </>
     );
 };
-
-export default CreatePost;
+export default EditPost;

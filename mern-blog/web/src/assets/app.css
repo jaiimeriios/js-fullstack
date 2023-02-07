@@ -151,10 +151,13 @@ header nav a {
 .entry p.info {
     font-size: 1rem;
     margin: 0 0 0.35rem 0;
+    color: rgb(135, 134, 134);
 }
 
 .entry p.info .author {
+    color: var(--text-color);
     margin: 0 0.5rem 0 0;
+    font-weight: 700;
 }
 
 .entry p {
@@ -278,4 +281,32 @@ header nav a {
 }
 .create-post button:active {
     background-color: var(--link-active-color);
+}
+
+
+.blog-post {
+    width: 96%;
+    max-width: 1000px;
+    margin: 1rem auto;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: .35rem;
+}
+
+.blog-post img {
+    max-width: 100%;
+    height: auto;
+}
+
+.blog-post .info {
+    margin: 1rem 0;
+}
+.blog-post .title {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    color: var(--nav-heading-color);
+}
+.blog-post .summary {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
 }

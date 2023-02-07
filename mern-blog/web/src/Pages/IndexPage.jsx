@@ -3,7 +3,7 @@ import Post from '../components/Post';
 
 const IndexPage = () => {
     const [posts, setPosts] = useState([]);
-console.log(posts)
+
     useEffect(() => {
         fetch('http://localhost:666/post')
             .then((response) => response.json())
