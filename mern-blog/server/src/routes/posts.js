@@ -4,6 +4,7 @@ const multer = require('multer');
 const uploadMiddleware = multer({ dest: 'src/uploads/' });
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
+const mongoose = require('mongoose');
 
 const Post = require('../models/post');
 
@@ -49,7 +50,7 @@ router.post('/', uploadMiddleware.single('file'), async (req, res) => {
     });
 });
 
-// PUT - Update 
+// PUT - Update
 router.put('/', uploadMiddleware.single('file'), async (req, res) => {
     let newPath = null;
 
@@ -85,6 +86,20 @@ router.put('/', uploadMiddleware.single('file'), async (req, res) => {
 
         res.json(postDoc);
     });
+});
+
+// DELETE
+router.delete('/:id', async (req, res) => {
+    const { id } = req.params;
+    const post = await Post.findOne({ _id: id });
+
+    if (post) {
+        await Post.findOneAndDelete({ _id: id });
+        res.status(200).json(post);
+        console.log(':: DELETED ::', post);
+    } else {
+        return res.status(400).json({ error: 'No such post' });
+    }
 });
 
 module.exports = router;

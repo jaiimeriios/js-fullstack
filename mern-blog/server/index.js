@@ -8,7 +8,7 @@ const app = express();
 const port = process.env.PORT;
 
 const authUsersRoutes = require('./src/routes/authUser');
-const createPost = require('./src/routes/create');
+const posts = require('./src/routes/posts');
 
 // Middleware
 app.use(express.json());
@@ -18,7 +18,7 @@ app.use('/src/uploads', express.static(__dirname + '/src/uploads'));
 
 // Routes
 app.use('/', authUsersRoutes);
-app.use('/post', createPost);
+app.use('/post', posts);
 
 mongoose
     .connect(process.env.MONGO_URI)
