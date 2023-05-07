@@ -4,25 +4,8 @@ import { useJwt, decodeToken } from 'react-jwt';
 const Dashboard = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-
-    const [quote, setQuote] = useState('');
-    const [tempQuote, setTempQuote] = useState('');
-
-    const populateQuote = async () => {
-        const response = await fetch('http://localhost:666/quote', {
-            headers: {
-                'x-access-token': localStorage.getItem('token'),
-            },
-        });
-        const data = await response.json();
-        if (data.status === 'ok') {
-            setQuote(data.user.quote);
-            setName(data.user.name);
-            setEmail(data.user.email);
-        } else {
-            console.log('no data');
-        }
-    };
+    const [quotes, setQuotes] = useState('');
+    const [newQuote, setNewQuote] = useState('');
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -37,7 +20,23 @@ const Dashboard = () => {
                 populateQuote();
             }
         }
-    }, []);
+    }, [quotes]);
+
+    const populateQuote = async () => {
+        const response = await fetch('http://localhost:666/quote', {
+            headers: {
+                'x-access-token': localStorage.getItem('token'),
+            },
+        });
+        const data = await response.json();
+        if (data.status === 'ok') {
+            setName(data.user.name);
+            setEmail(data.user.email);
+            setQuotes(data.user.quote);
+        } else {
+            console.log('no data');
+        }
+    };
 
     const updateQuote = async (e) => {
         e.preventDefault();
@@ -48,15 +47,15 @@ const Dashboard = () => {
                 'x-access-token': localStorage.getItem('token'),
             },
             body: JSON.stringify({
-                quote: tempQuote,
+                quote: newQuote,
             }),
         });
         const data = await response.json();
-        console.log(data);
-
+        
         if (data.status === 'ok') {
-            setQuote(tempQuote);
-            setTempQuote('');
+            console.log(data);
+            setNewQuote('');
+            // setQuotes(newQuote);
         } else {
             console.log('no data');
         }
@@ -66,16 +65,23 @@ const Dashboard = () => {
         <>
             <h2>{name}</h2>
             <h3>{email}</h3>
-            <h4>Quote</h4>
-            <p>{quote || 'No quote Found'}</p>
+
             <form onSubmit={updateQuote}>
                 <input
                     type="text"
-                    value={tempQuote}
-                    onChange={(e) => setTempQuote(e.target.value)}
+                    value={newQuote}
+                    onChange={(e) => setNewQuote(e.target.value)}
                 />
-                <button>Set</button>
+                <button>Add New</button>
             </form>
+
+            <h4>Quote</h4>
+            {
+                quotes && quotes.map((q, i) => (
+                    <p key={i}>{q}</p>
+                ))
+            }
+
         </>
     );
 };

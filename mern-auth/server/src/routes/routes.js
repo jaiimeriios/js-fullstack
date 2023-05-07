@@ -74,9 +74,10 @@ router.post('/quote', async (req, res) => {
     try {
         const decoded = jwt.verify(token, process.env.JWT);
         const email = decoded.email;
+        const newQuote = req.body.quote
         await UserModel.updateOne(
             { email: email },
-            { $set: { quote: req.body.quote } }
+            { $push: { quote: newQuote } }
         );
 
         return res.json({ status: 'ok' });
