@@ -20,11 +20,13 @@ function App() {
         setName('');
         setEmail('');
         setPassword('');
+        if ((data.status === 'ok')) {
+            window.location.replace('/login');
+        }
     };
 
     return (
         <>
-            
             <form onSubmit={registerUser}>
                 <input
                     type="text"
