@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 
 import UserModel from './src/models/users.js';
 import UsersModel from './src/models/users.js';
@@ -22,10 +23,11 @@ app.get('/', (req, res) => {
 app.post('/register', async (req, res) => {
     try {
         const { name, email, password } = req.body;
+        const cryptPassword = await bcrypt.hash(password, 10);
         const user = await UserModel.create({
             name,
             email,
-            password,
+            password: cryptPassword,
         });
         return res.json({ status: 'ok', user });
     } catch (e) {
@@ -38,12 +40,15 @@ app.post('/login', async (req, res) => {
     const { email, password } = req.body;
     const user = await UserModel.findOne({
         email,
-        password,
     });
 
-    console.log(user);
+    if (!user) {
+        return { status: 'error', error: 'invalid password' };
+    }
 
-    if (user) {
+    const isPasswordValid = bcrypt.compare(password, user.password);
+
+    if (isPasswordValid) {
         const token = jwt.sign(
             {
                 id: user._id,
@@ -83,7 +88,7 @@ app.post('/quote', async (req, res) => {
             { email: email },
             { $set: { quote: req.body.quote } }
         );
-        
+
         return res.json({ status: 'ok' });
     } catch (e) {
         console.log(e);
