@@ -23,11 +23,11 @@ export const postQuote = async (req, res) => {
     const token = req.headers['x-access-token'];
 
     try {
-        // const decoded = jwt.verify(token, process.env.JWT);
+        const decoded = jwt.verify(token, process.env.JWT);
         const newQuote = req.body.quote;
-
+        
         await UserModel.updateOne(
-            // { email: decoded.email },
+            { email: decoded.email },
             { $set: { quote: newQuote } }
         );
 
