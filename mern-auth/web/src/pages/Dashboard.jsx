@@ -20,7 +20,7 @@ const Dashboard = () => {
                 populateQuote();
             }
         }
-    }, [quotes]);
+    }, []);
 
     const populateQuote = async () => {
         const response = await fetch('http://localhost:666/quote', {
@@ -29,6 +29,7 @@ const Dashboard = () => {
             },
         });
         const data = await response.json();
+
         if (data.status === 'ok') {
             setName(data.user.name);
             setEmail(data.user.email);
@@ -55,7 +56,7 @@ const Dashboard = () => {
         if (data.status === 'ok') {
             console.log(data);
             setNewQuote('');
-            // setQuotes(newQuote);
+            setQuotes(data.newQuote);
         } else {
             console.log('no data');
         }
@@ -77,9 +78,7 @@ const Dashboard = () => {
 
             <h4>Quote</h4>
             {
-                quotes && quotes.map((q, i) => (
-                    <p key={i}>{q}</p>
-                ))
+                quotes ? quotes : 'Update quote'
             }
 
         </>

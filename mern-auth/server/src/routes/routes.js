@@ -77,10 +77,10 @@ router.post('/quote', async (req, res) => {
         const newQuote = req.body.quote
         await UserModel.updateOne(
             { email: email },
-            { $push: { quote: newQuote } }
+            { $set: { quote: newQuote } }
         );
 
-        return res.json({ status: 'ok' });
+        return res.json({ status: 'ok', newQuote });
     } catch (e) {
         console.log(e);
         res.json({ status: 'error', error: 'Invalid token' });

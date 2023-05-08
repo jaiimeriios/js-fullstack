@@ -15,7 +15,7 @@ const UsersSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        quote: { type: Array },
+        quote: { type: String },
     },
     { timestamps: true }
 );
