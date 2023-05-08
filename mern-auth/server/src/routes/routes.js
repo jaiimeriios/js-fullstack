@@ -1,91 +1,15 @@
 import express from 'express';
 const router = express.Router();
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
 
-import UserModel from '../models/users.js';
+import { registerUser, loginUser } from '../controllers/user.js';
+import { getQuote, postQuote } from '../controllers/quote.js';
 
-// REGISTER
-router.post('/register', async (req, res) => {
-    try {
-        const { name, email, password } = req.body;
-        const cryptPassword = await bcrypt.hash(password, 10);
-        const user = await UserModel.create({
-            name,
-            email,
-            password: cryptPassword,
-        });
-        return res.json({ status: 'ok', user });
-    } catch (e) {
-        console.log(e);
-        res.json({ status: 'error', error: e });
-    }
-});
+// USER
+router.post('/register', registerUser);
+router.post('/login', loginUser);
 
-
-// LOGIN
-router.post('/login', async (req, res) => {
-    const { email, password } = req.body;
-    const user = await UserModel.findOne({
-        email,
-    });
-
-    if (!user) {
-        return { status: 'error', error: 'invalid password' };
-    }
-
-    const isPasswordValid = bcrypt.compare(password, user.password);
-
-    if (isPasswordValid) {
-        const token = jwt.sign(
-            {
-                id: user._id,
-                name: user.name,
-                email: user.email,
-                password: user.password,
-            },
-            process.env.JWT
-        );
-        return res.json({ status: 'ok', token: token });
-    } else {
-        return res.json({ status: 'error', user: false });
-    }
-});
-
-// GET QUOTE
-router.get('/quote', async (req, res) => {
-    const token = req.headers['x-access-token'];
-
-    try {
-        const decoded = jwt.verify(token, process.env.JWT);
-        const email = decoded.email;
-        const user = await UserModel.findOne({ email: email });
-        res.json({ status: 'ok', user });
-    } catch (e) {
-        console.log(e);
-        res.json({ status: 'error', error: 'Invalid token' });
-    }
-})
-
-// POST QUOTE
-router.post('/quote', async (req, res) => {
-    const token = req.headers['x-access-token'];
-
-    try {
-        const decoded = jwt.verify(token, process.env.JWT);
-        const email = decoded.email;
-        const newQuote = req.body.quote
-        await UserModel.updateOne(
-            { email: email },
-            { $set: { quote: newQuote } }
-        );
-
-        return res.json({ status: 'ok', newQuote });
-    } catch (e) {
-        console.log(e);
-        res.json({ status: 'error', error: 'Invalid token' });
-    }
-});
-
+// QUOTE
+router.get('/quote', getQuote);
+router.post('/quote', postQuote);
 
 export default router;
