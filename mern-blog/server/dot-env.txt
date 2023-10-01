@@ -1,4 +1,0 @@
-PORT=666
-MONGO_URI=mongodb+srv://{USERNAME}:{PASSWORD}@{DBNAME}.g6sqj.mongodb.net/{COLLECTION}
-JWT_SECRET=jasonwebtokensecretstring
-ORIGIN_URL=http://localhost:3000
