@@ -1,9 +1,11 @@
-require('dotenv').config();
-const express = require('express');
-const mongoose = require('mongoose');
+import 'dotenv/config';
+import express from 'express';
+import mongoose from 'mongoose';
 
 const app = express();
 const port = process.env.PORT;
+
+import authUsersRoute from './src/routes/authUsersRoute.js';
 
 // MIDDLEWARE =-=-=-=-=-=-=-=
 app.use(express.json());
@@ -17,8 +19,10 @@ app.use((req, res, next) => {
 // ROUTES =-=-=-=-=-=-=-=-=-=
 app.get('/', (req, res) => {
     // res.json({ mssg: 'welcome to the app' });
-    res.send('<h1>Home Page</h1><br><a href="/todos">todos</a>');
+    res.send('<h1>Home Page</h1><br><a href="/">home</a>');
 });
+
+app.use('/', authUsersRoute);
 
 app.all('*', (req, res) => {
     res.send("You've tried reaching a route that doesn't exist.");
