@@ -30,7 +30,7 @@ const UsersDetails = ({ user }) => {
             <td>{user.username}</td>
             <td>{user.email}</td>
             <td>
-                {formatDistanceToNow(new Date(user.createdAt), {
+                {formatDistanceToNow(new Date(user.updatedAt), {
                     addSuffix: true,
                 })}
             </td>

@@ -121,7 +121,7 @@ const SingleUser = () => {
                     <p>{user.username}</p>
                     <p>{user.email}</p>
                     <p>
-                        {formatDistanceToNow(new Date(user.createdAt), {
+                        {formatDistanceToNow(new Date(user.updatedAt), {
                             addSuffix: true,
                         })}
                     </p>
