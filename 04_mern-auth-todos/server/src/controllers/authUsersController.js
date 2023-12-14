@@ -28,15 +28,14 @@ const signupUserController = async (req, res) => {
 };
 
 
-
-
 // LOGIN
 const loginUserController = async (req, res) => {
     const { email, password } = req.body;
 
+    console.log(req.body )
     try {
-        const authuser = await authUsersModel.authUserlogin(email, password);
-        const token = jwtToken(authuser._id);
+        const authUser = await authUsersModel.authUserlogin(email, password);
+        const token = jwtToken(authUser._id);
         res.status(200).json({ email, token });
         console.log('USER LOGIN :: ' + email);
     } catch (e) {
@@ -46,4 +45,4 @@ const loginUserController = async (req, res) => {
 };
 
 // Export controller function to Routes
-export { loginUserController, signupUserController };
+export { signupUserController, loginUserController };

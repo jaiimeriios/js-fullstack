@@ -50,9 +50,9 @@ authUsersModelSchema.statics.authUserSignup = async function (
     // encript password
     const saltRounds = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, saltRounds);
-    const Authuser = await this.create({ username, email, password: hash });
+    const authUser = await this.create({ username, email, password: hash });
 
-    return Authuser;
+    return authUser;
 };
 
 // Static method - LOGIN
@@ -62,19 +62,19 @@ authUsersModelSchema.statics.authUserlogin = async function (email, password) {
     }
 
     // Check if user email exists
-    const validuser = await this.findOne({ email });
-    if (!validuser) {
+    const validUser = await this.findOne({ email });
+    if (!validUser) {
         throw Error('User does not exist - Incorrect Email');
     }
 
     // check if password matches with DB password for user
-    const match = await bcrypt.compare(password, validuser.password);
+    const match = await bcrypt.compare(password, validUser.password);
 
     if (!match) {
         throw Error('Incorrect Password');
     }
 
-    return validuser;
+    return validUser;
 };
 
 export default mongoose.model('authUsersModel', authUsersModelSchema);
