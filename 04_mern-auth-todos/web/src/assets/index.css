@@ -1,113 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+    --bg-gradient: linear-gradient(15deg, #1e1f22, #16272d);
+    --header-height: 50px;
+    --bg-header: #132833;
+    --bg-nav: rgba(24, 34, 48, 0.15);
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+    --heading-color: rgb(198 221 255);
+    --text-color: rgb(219 226 235);
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    --link-color: #ffc107;
+    --link-hover-color: #ff9800;
+    --link-active-color: #ebfbb6;
+
+    --primary: #1aac83;
+    --error: #e7195a;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-a:hover {
-  color: #535bf2;
+
+html {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: #f3f3f3;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+    width: 100%;
+    min-height: 100vh;
+    background: var(--bg-gradient);
+    color: var(--text-color);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* .app {
+} */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--header-height);
+    background-color: var(--bg-header);
+    padding: 0 1rem;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+header > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+header .home {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    text-decoration: none;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+header .home:hover h1 {
+    color: var(--link-hover-color);
 }
 
-
-
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+header img.logo {
+    width: 2rem;
+    height: auto;
+    pointer-events: none;
+    user-select: none;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+header h1 {
+    font-size: 1rem;
+    height: min-content;
+    color: #fff;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+    img.logo {
+        animation: App-logo-spin-color infinite 60s linear;
+    }
+}
+@keyframes App-logo-spin-color {
+    from {
+        transform: rotate(0deg);
+        filter: hue-rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+        filter: hue-rotate(360deg);
+    }
 }
 
-.card {
-  padding: 2em;
+nav a {
+    font-size: 1rem;
+    text-decoration: none;
+    margin: 0 0.25rem;
+    color: var(--link-color);
 }
 
-.read-the-docs {
-  color: #888;
+nav a:hover {
+    color: var(--link-hover-color);
+}
+
+nav a.active {
+    color: var(--link-active-color);
+    text-decoration: underline;
+}
+
+nav button {
+    font-size: 1rem;
+    margin: 0 0.25rem;
+    color: var(--link-color);
+    border: none;
+    background-color: transparent;
+}
+
+nav button:hover {
+    cursor: pointer;
+    color: var(--link-hover-color);
+}
+
+.pages {
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pages h2 {
+    color: var(--heading-color);
+    font-size: 1.25rem;
+    display: block;
+    margin: 0 0 1rem 0;
+}
+
+/* LOGIN/SIGNUP */
+
+form.auth-form {
+    border-radius: 0.25rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 25rem;
+    margin: 0 auto;
+    border: solid 1px rgba(255, 255, 255, 0.075);
+    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 2px 2px 8px 2px rgb(0, 0, 0, 0.2);
+    transition: all 200ms ease-in;
+}
+
+form.auth-form h3 {
+    font-size: 2rem;
+    text-align: center;
+}
+
+form.auth-form label {
+    font-size: 1.1rem;
+    margin: 1rem 0 0.25rem 0;
+}
+form.auth-form input {
+    font-size: 1.1rem;
+    padding: 0.5rem;
+    width: 100%;
+    border: 2px solid #0e344c;
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+form.auth-form input:focus,
+form.auth-form input:focus-visible {
+    border: 2px solid var(--primary);
+    outline: none;
+}
+
+form.auth-form input.error {
+    border-color: var(--error);
+}
+
+form.auth-form button {
+    background: var(--primary);
+    border: 0;
+    color: #fff;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 1rem auto 0 auto;
+    display: block;
+}
+
+form.auth-form .error {
+    padding: 10px 0;
+    background-color: #9b2c3b;
+    border: 1px solid #b14747;
+    color: #ffffff;
+    border-radius: 0.25rem;
+    margin: 20px 0 0 0;
+    text-align: center;
 }

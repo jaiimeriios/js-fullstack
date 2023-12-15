@@ -55,8 +55,5 @@ bring UserAuthContext, add headers to to verify authorization from JWT token. Pr
 PROTECTED ROUTES -  App.js
 routing: set user routed if loggedin/out with authContext
 
-ASSIGN PERSONAL DATA - 
-
-
 npm packages
     react, react-router, date-fns

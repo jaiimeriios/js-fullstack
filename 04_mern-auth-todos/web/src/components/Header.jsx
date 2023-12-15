@@ -14,14 +14,18 @@ const Header = ({ title }) => {
     return (
         <header>
             <div>
-                {/* <NavLink to="/" className="home"> */}
+                <NavLink to="/" className="home">
                     <img src={reactLogo} className="logo" alt="logo" />
                     <h1>{title}</h1>
-                {/* </NavLink> */}
+                </NavLink>
             </div>
-            {/* <nav>
-                  <NavLink to="/">Home</NavLink> 
-                    {userAuth ? (
+            <nav>
+                <NavLink to="/">Home</NavLink>
+
+                <NavLink to="/signup">Signup</NavLink>
+                <NavLink to="/login">login</NavLink>
+
+                {/* {userAuth ? (
                         <>
                             <span>{userAuth.email}</span>
                             <button onClick={handleClick}>logout</button>
@@ -31,8 +35,8 @@ const Header = ({ title }) => {
                             <NavLink to="/signup">Signup</NavLink>
                             <NavLink to="/login">login</NavLink>
                         </>
-                    )}
-                </nav> */}
+                    )} */}
+            </nav>
         </header>
     );
 };
