@@ -10,7 +10,6 @@ function Signup() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // console.log(username, email, password);
         signup(username, email, password);
     };
 

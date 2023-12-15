@@ -1,10 +1,13 @@
 import { useState } from 'react';
+import { useAuthContext } from './useAuthContext';
 
 export const useSignup = () => {
     const [loading, setLoading] = useState(null);
     const [error, setError] = useState(null);
 
-    const signup = async (username, email, password) => { 
+    const { dispatch } = useAuthContext();
+
+    const signup = async (username, email, password) => {
         setLoading(true);
         setError(null);
 
@@ -25,7 +28,7 @@ export const useSignup = () => {
             localStorage.setItem('authuser', JSON.stringify(authjson));
 
             // Update the auth context
-            // dispatch({ type: 'LOGIN', payload: authjson });
+            dispatch({ type: 'LOGIN', payload: authjson });
 
             setLoading(false);
         }
