@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
 import mongoose from 'mongoose';
+import cors from 'cors'
 
 const app = express();
 const port = process.env.PORT;
@@ -8,6 +9,7 @@ const port = process.env.PORT;
 import authUsersRoute from './src/routes/authUsersRoute.js';
 
 // MIDDLEWARE =-=-=-=-=-=-=-=
+app.use(cors());
 app.use(express.json());
 
 app.use((req, res, next) => {

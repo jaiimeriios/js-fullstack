@@ -12,3 +12,7 @@ WEB::
 
    Signpup Page:
    create a form with the necessary inputs
+
+   Create Signup Context:
+   import { createContext, useReducer, useEffect } from 'react';
+   
