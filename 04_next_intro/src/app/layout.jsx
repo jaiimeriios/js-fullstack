@@ -1,4 +1,5 @@
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 import './globals.css';
 import { Noto_Serif, Noto_Sans } from 'next/font/google';
 
@@ -16,6 +17,7 @@ export default function RootLayout ({ children })  {
             <body className={notoSans.className}>
                 <Navbar />
                 {children}
+                <Footer />
             </body>
         </html>
     );
