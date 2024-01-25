@@ -116,3 +116,21 @@ header nav.nav {
         background-color: #2795b7;
     }
 }
+
+
+.container-image {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.container-image img {
+    margin:  0 auto;
+}
+
+@media (min-width: 1000px) {
+    .container-image {
+        flex-direction: row;
+    }
+}

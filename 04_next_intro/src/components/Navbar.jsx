@@ -64,7 +64,14 @@ const NavLinks = ({ links, styleClassName }) => {
             ))}
             {session ? (
                 <>
-                    {admin && <Link href="/admin">Admin</Link>}
+                    {admin && (
+                        <Link
+                            href="/admin"
+                            className={`${pathName === '/admin' && 'active'}`}
+                        >
+                            Admin
+                        </Link>
+                    )}
                     <button>Logout</button>
                 </>
             ) : (
