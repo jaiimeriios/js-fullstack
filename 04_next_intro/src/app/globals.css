@@ -25,7 +25,7 @@ main,
 footer {
     padding: 1rem;
     display: flex;
-    margin: 0 auto;
+    margin: 0 2rem;
     max-width: 1600px;
 }
 
@@ -117,6 +117,9 @@ header nav.nav {
     }
 }
 
+.container {
+    width: 100%;
+}
 
 .container-image {
     margin-top: 2rem;
@@ -126,11 +129,90 @@ header nav.nav {
 }
 
 .container-image img {
-    margin:  0 auto;
+    margin: 0 auto;
 }
 
 @media (min-width: 1000px) {
     .container-image {
         flex-direction: row;
     }
+}
+
+/* Contact Form */
+
+.contact-form {
+    gap: 1rem;
+    width: 98%;
+    max-width: 400px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+}
+.contact-form input,
+.contact-form textarea {
+    border: none;
+    outline: none;
+    border-radius: 0.2rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    font-family: sans-serif;
+}
+.contact-form textarea {
+    resize: vertical;
+    min-height: 100px;
+    max-height: 300px;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: solid 2px rebeccapurple;
+}
+.contact-form button {
+    width: fit-content;
+    margin: 0 auto;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.2rem;
+    cursor: pointer;
+}
+
+/* Blog */
+.blog-posts {
+    width: 100%;
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.blog-post-single {
+    width: 100%;
+    min-width: 200px;
+    max-width: 350px;
+    background-color: #074652;
+}
+.blog-post-single img {
+    object-fit: cover;
+    width: 100%;
+}
+.blog-post-single .date {
+    font-size: 0.9rem;
+    margin: 1rem 0;
+    font-style: italic;
+}
+.blog-post-single .description {
+    margin-bottom: 1rem;
+}
+/* Single Post */
+.blog-post-page {
+    display: flex;
+    gap: 2rem;
+}
+.blog-post-page-content h2 {
+    font-size: 2.5rem;
+}
+.blog-post-page-content img.author {
+    border-radius: 1rem;
+}
+.blog-post-page-content .content {
+    margin-top: 2rem;
 }
