@@ -1,6 +1,9 @@
 import Image from 'next/image';
 
-const SinglePostPage = () => {
+const SinglePostPage = ({params}) => {
+
+    console.log(params)
+
     return (
         <div className="blog-post-page">
             <Image

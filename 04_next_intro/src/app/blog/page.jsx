@@ -1,6 +1,10 @@
 import PostCard from '@/components/PostCard';
 
-const BlogPage = () => {
+const BlogPage = ({params, searchParams}) => {
+    
+    console.log(params)
+    console.log(searchParams)
+    
     return (
         <div className="container">
             <h2>Blog Page</h2>

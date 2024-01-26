@@ -12,7 +12,6 @@ const Home = () => {
                     voluptatum quia optio itaque aliquid rerum nisi perferendis
                     nesciunt magni illo dolor maxime adipisci.
                 </p>
-                <button></button>
                 <Image
                     src="/pc.gif"
                     alt="home page"
