@@ -1,25 +1,17 @@
 import PostUser from '@/components/PostUser';
+import { getPost, getUser } from '@/lib/data';
 import Image from 'next/image';
 import { Suspense } from 'react';
 
-const getSinglePostData = async (postId) => {
-    const res = await fetch(
-        `https://jsonplaceholder.typicode.com/posts/${postId}`,
-        { next: { revalidate: 3600 } }
-    );
-    if (!res.ok) {
-        throw new Error('Something went wrong');
-    }
-    return res.json();
-};
-
 const SinglePostPage = async ({ params, searchParams }) => {
-    const singlePostData = await getSinglePostData(params.slug);
+
+    const singlePostData = await getPost(params.slug)
+    const user = await getUser(singlePostData.userId)
 
     return (
         <div className="blog-post-page">
             <Image
-                src="/waterfall.jpg"
+                src={`/${singlePostData.img}`}
                 alt="alt text"
                 width="640"
                 height="350"
@@ -28,9 +20,9 @@ const SinglePostPage = async ({ params, searchParams }) => {
                 <h2>{singlePostData.title}</h2>
                 <p className="date">date</p>
                 <Suspense fallback={<div>Loading user...</div>}>
-                    <PostUser user={singlePostData.userId} />
+                    <PostUser postUser={user} />
                 </Suspense>
-                <p className="content">{singlePostData.body}</p>
+                <p className="content">{singlePostData.description}</p>
             </div>
         </div>
     );

@@ -1,30 +1,19 @@
+import { getUser } from '@/lib/data';
 import Image from 'next/image';
 
-const getUserData = async (userID) => {
-    const res = await fetch(
-        `https://jsonplaceholder.typicode.com/users/${userID}`,
-        { next: { revalidate: 3600 } }
-    );
-    if (!res.ok) {
-        throw new Error('Something went wrong');
-    }
-    return res.json();
-};
-
-const PostUser = async ({ user }) => {
-    const pUser = await getUserData(user);
+const PostUser = async ({ postUser }) => {
+    const user = await getUser(postUser);
 
     return (
         <>
             <Image
                 className="author"
-                src="/author.jpg"
+                src={`/${user.img}`}
                 alt="author"
                 width="60"
                 height="60"
             />
-            <p>{pUser.name}</p>
-            <p>{pUser.email}</p>
+            <p>{user.username}</p>
         </>
     );
 };
